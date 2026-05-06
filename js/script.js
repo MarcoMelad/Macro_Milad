@@ -71,14 +71,24 @@ window.addEventListener("scroll", () => {
     if (menuIcon && navlist) {
         menuIcon.classList.remove("bx-x");
         navlist.classList.remove("open");
+        menuIcon.setAttribute("aria-expanded", "false");
     }
 });
 
 if (menuIcon && navlist) {
     menuIcon.onclick = () => {
-        menuIcon.classList.toggle("bx-x");
-        navlist.classList.toggle("open");
+        const isOpen = navlist.classList.toggle("open");
+        menuIcon.classList.toggle("bx-x", isOpen);
+        menuIcon.setAttribute("aria-expanded", String(isOpen));
     };
+
+    navlist.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+            menuIcon.classList.remove("bx-x");
+            navlist.classList.remove("open");
+            menuIcon.setAttribute("aria-expanded", "false");
+        });
+    });
 }
 
 const observer = new IntersectionObserver((entries) => {

@@ -112,6 +112,8 @@ span{
     border-radius: 3px;
     color: var(--second-bg-color);
     display: none;
+    border: none;
+    line-height: 1;
 }
 section {
     padding: 100px 10%;
@@ -180,11 +182,25 @@ section {
     line-height: 1.6;
 }
 .info-box {
-    display: inline-flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 300px;
-    margin: 1rem 0 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 0.9rem 2rem;
+    width: 100%;
+    max-width: 42rem;
+    margin: 1rem 0 1.4rem;
+}
+.info-box .email-info {
+    flex: 1 1 230px;
+    min-width: 220px;
+}
+.info-box-location {
+    max-width: 26rem;
+    margin-top: 0;
+    margin-bottom: 2rem;
+}
+.info-box-location .email-info {
+    min-width: 0;
 }
 .stat-grid {
     display: grid;
@@ -216,8 +232,10 @@ section {
     font-size: 1rem;
 }
 .info-box span {
+    display: block;
     font-size: 0.9rem;
     color: #bdbdbd;
+    overflow-wrap: anywhere;
 }
 .btn-box {
     display: flex;
@@ -990,7 +1008,18 @@ footer a i {
 }
 .show-items {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }
 
 /*     -----     Break Point     -----     */
